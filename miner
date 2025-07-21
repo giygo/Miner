@@ -1,0 +1,2 @@
+unzip bitcoin_regtest_miner_final.zip
+cd bitcoin_regtest_miner
