@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  bitcoind:
+    image: ruimarinho/bitcoin-core:latest
+    command: [
+      "bitcoind",
+      "-testnet",
+      "-printtoconsole",
+      "-rpcuser=user",
+      "-rpcpassword=pass",
+      "-rpcallowip=0.0.0.0/0",
+      "-server",
+      "-rest",
+      "-rpcbind=0.0.0.0",
+      "-rpcport=18332"
+    ]
+    ports:
+      - "18332:18332"
+    volumes:
+      - bitcoind_data_testnet:/bitcoin
+
+  miner:
+    build: .
+    environment:
+      - NETWORK=testnet
+    depends_on:
+      - bitcoind
+
+  dashboard:
+    build: ./dashboard
+    ports:
+      - "5000:5000"
+    depends_on:
+      - bitcoind
+
+volumes:
+  bitcoind_data_testnet:
