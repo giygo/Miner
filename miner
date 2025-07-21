@@ -1,2 +1,6 @@
-unzip bitcoin_regtest_miner_final.zip
-cd bitcoin_regtest_miner
+cd bitcoin_regtest_miner_final
+git init
+git remote add origin https://github.com/Giygo/miner.git
+git add .
+git commit -m "Initial commit: full miner project"
+git push -u origin main
